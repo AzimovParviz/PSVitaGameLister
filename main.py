@@ -3,7 +3,7 @@ import os
 
 #scanning the app folder for Title IDs
 
-root = input('provide path to the app folder of your ps vita')
+root = input('provide path to the app folder of your ps vita: ')
 dirlist = [ item for item in os.listdir(root) if os.path.isdir(os.path.join(root, item)) ]
 print(dirlist)
 
@@ -11,9 +11,11 @@ print(dirlist)
 filename = 'PSV_GAMES.tsv'
 with open(filename) as tsvfile:
   reader = csv.DictReader(tsvfile, dialect='excel-tab')
-      
-  for directory in dirlist:
-      for row in reader:
-          if row['Title ID']==directory:
-              print(row['Name'])
+  for row in reader:
+    for directory in dirlist:
+      if row['Title ID']==directory:
+        print(row['Title ID'],row['Name'])
+print("done")
+
+
                 
